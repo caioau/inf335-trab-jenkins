@@ -1,0 +1,111 @@
+Started by user help me exit vim
+Obtained Jenkinsfile from git https://github.com/caioau/inf335-trab-jenkins
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/.jenkins/workspace/pipeline_docker
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/.jenkins/workspace/pipeline_docker/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caioau/inf335-trab-jenkins # timeout=10
+Fetching upstream changes from https://github.com/caioau/inf335-trab-jenkins
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/caioau/inf335-trab-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse origin/java_docker^{commit} # timeout=10
+Checking out Revision bd1b7e094d19771d872e0e9c408af20e3df49696 (origin/java_docker)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bd1b7e094d19771d872e0e9c408af20e3df49696 # timeout=10
+Commit message: "adicionando o Jenkinsfile (docker)"
+ > git rev-list --no-walk bd1b7e094d19771d872e0e9c408af20e3df49696 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/.jenkins/workspace/pipeline_docker/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caioau/inf335-trab-jenkins/ # timeout=10
+Fetching upstream changes from https://github.com/caioau/inf335-trab-jenkins/
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/caioau/inf335-trab-jenkins/ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/java_docker^{commit} # timeout=10
+Checking out Revision bd1b7e094d19771d872e0e9c408af20e3df49696 (refs/remotes/origin/java_docker)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bd1b7e094d19771d872e0e9c408af20e3df49696 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D java_docker # timeout=10
+ > git checkout -b java_docker bd1b7e094d19771d872e0e9c408af20e3df49696 # timeout=10
+Commit message: "adicionando o Jenkinsfile (docker)"
+[Pipeline] sh
++ docker build --pull -t java_docker .
+Sending build context to Docker daemon  137.2kB
+
+Step 1/11 : FROM openjdk:11
+11: Pulling from library/openjdk
+Digest: sha256:f1d7736dda6d8ba321025433f7e7878ba3a0bc0631b0c3fa06da9415a5da3f57
+Status: Image is up to date for openjdk:11
+ ---> 40da647dabfd
+Step 2/11 : ARG username=nonroot
+ ---> Using cache
+ ---> 118718527119
+Step 3/11 : ARG username_home=/home/$username/
+ ---> Using cache
+ ---> c2c1f1b0d81f
+Step 4/11 : ARG username_uid=1000
+ ---> Using cache
+ ---> bbabe7c8ec05
+Step 5/11 : ARG username_gid=1000
+ ---> Using cache
+ ---> 29fb5f436241
+Step 6/11 : RUN groupadd --gid $username_gid $username     && useradd -u $username_uid -g $username_gid --home-dir $username_home $username     && mkdir -p $username_home     && chown $username:$username -R $username_home
+ ---> Using cache
+ ---> 9df62c6455d2
+Step 7/11 : USER $username
+ ---> Using cache
+ ---> 5af310abe658
+Step 8/11 : WORKDIR $username_home
+ ---> Using cache
+ ---> 8f4124123de3
+Step 9/11 : COPY --chown=$username:$username OlaUnicamp.java .
+ ---> Using cache
+ ---> 53fee15c7f4a
+Step 10/11 : RUN javac OlaUnicamp.java
+ ---> Using cache
+ ---> 0ef7040eb2e8
+Step 11/11 : CMD java OlaUnicamp
+ ---> Using cache
+ ---> 30f76d062def
+Successfully built 30f76d062def
+Successfully tagged java_docker:latest
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run)
+[Pipeline] sh
++ docker run --rm java_docker
+Olá Unicamp
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
