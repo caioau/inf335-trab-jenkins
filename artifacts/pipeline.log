@@ -1,0 +1,133 @@
+Started by user help me exit vim
+Obtained Jenkinsfile from git https://github.com/caioau/inf335-trab-jenkins
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/.jenkins/workspace/pipeline_maven
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/.jenkins/workspace/pipeline_maven/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caioau/inf335-trab-jenkins # timeout=10
+Fetching upstream changes from https://github.com/caioau/inf335-trab-jenkins
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/caioau/inf335-trab-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse origin/java_maven^{commit} # timeout=10
+Checking out Revision 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 (origin/java_maven)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 # timeout=10
+Commit message: "adicionando o Jenkinsfile"
+ > git rev-list --no-walk 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/.jenkins/workspace/pipeline_maven/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caioau/inf335-trab-jenkins/ # timeout=10
+Fetching upstream changes from https://github.com/caioau/inf335-trab-jenkins/
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/caioau/inf335-trab-jenkins/ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/java_maven^{commit} # timeout=10
+Checking out Revision 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 (refs/remotes/origin/java_maven)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D java_maven # timeout=10
+ > git checkout -b java_maven 8a3685e3bca0683d1f27e899bb7cff35e9feb2a4 # timeout=10
+Commit message: "adicionando o Jenkinsfile"
+[Pipeline] sh
++ mvn -Dmaven.test.failure.ignore=true clean package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< br.unicamp.ic.inf335.beans:trab4 >------------------
+[INFO] Building trab4 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ trab4 ---
+[INFO] Deleting /var/jenkins_home/.jenkins/workspace/pipeline_maven/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ trab4 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/jenkins_home/.jenkins/workspace/pipeline_maven/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ trab4 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /var/jenkins_home/.jenkins/workspace/pipeline_maven/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:testResources (default-testResources) @ trab4 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/jenkins_home/.jenkins/workspace/pipeline_maven/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ trab4 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /var/jenkins_home/.jenkins/workspace/pipeline_maven/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ trab4 ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.unicamp.ic.inf335.beans.AnuncianteBeanTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s - in br.unicamp.ic.inf335.beans.AnuncianteBeanTest
+[INFO] Running br.unicamp.ic.inf335.beans.AnuncioBeanTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in br.unicamp.ic.inf335.beans.AnuncioBeanTest
+[INFO] Running br.unicamp.ic.inf335.beans.ProdutoBeanTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in br.unicamp.ic.inf335.beans.ProdutoBeanTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.0.2:jar (default-jar) @ trab4 ---
+[INFO] Building jar: /var/jenkins_home/.jenkins/workspace/pipeline_maven/target/trab4-1.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.754 s
+[INFO] Finished at: 2022-05-10T20:17:39Z
+[INFO] ------------------------------------------------------------------------
+Post stage
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
